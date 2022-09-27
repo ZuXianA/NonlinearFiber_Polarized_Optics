@@ -52,7 +52,7 @@ def main():
     # 开始非线性拟合 Ps.需要给系数确定上下限，否则得到的结果与原表达差别非常大 即 bounds 参数项
     popt,pcov = optimize.curve_fit(f=Sellmeier,xdata=wavelengths**2,ydata=refractions*2,bounds=([0.5,-0.07,0,-0.2,0.8,-10],[0.7,0,0.41,0,0.9,-5]))
     popt_test,pcov_test = optimize.curve_fit(f=Sellmeier,xdata=wavelengths**2,ydata=refractions*2)      # 此处不限定系数的上下限
-    print('给参数确定上下限后多项式对应的系数为：',*popt)
+    print('参数取值限定范围后多项式对应的系数为：',*popt)
     print('参数取值无限制多项式对应的系数为：',*popt_test)
     
     f = open(file='FitSellmeierBy101.txt',mode='w',encoding='utf-8')
@@ -64,11 +64,9 @@ def main():
     f.close()
     
     plt.scatter(x=wavelengths,y=np.sqrt(Sellmeier(wavelengths**2,*popt)),color='g',label='fit')
+    plt.scatter(x=wavelengths,y=np.sqrt(Sellmeier(wavelengths**2,*popt_test)),color='b',label='fit*')
     plt.grid(),plt.legend()
     plt.show()
-
-    plt.scatter(x=wavelengths,y=np.sqrt(Sellmeier(wavelengths**2,*popt_test)),color='b',label='fit*')
-    
 
 
 if __name__ == '__main__':
