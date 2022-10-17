@@ -9,3 +9,5 @@
  python 文件夹下包含程序源代码以及 HTML 网页  
    
  PS. 运行 python 程序需要 requests、numpy、scipy 和 matplotlib 第三方库
+ 
+ # Assignment 2：仿真啁啾脉冲在色散光纤内的传输
