@@ -1,5 +1,6 @@
-# Assignment 1：利用Sellmeier公式拟合折射率
----2022秋学期戴老师非线性光纤光学---
+# 2022秋学期戴一堂老师非线性光纤光学
+
+## Assignment 1：利用Sellmeier公式拟合折射率
 
 使用爬虫获取网页上的 101 组波长和折射率数据  
 使用 scipy.optimize.curve_fit 进行非线性拟合  
@@ -10,4 +11,4 @@
    
  PS. 运行 python 程序需要 requests、numpy、scipy 和 matplotlib 第三方库
  
- # Assignment 2：仿真啁啾脉冲在色散光纤内的传输
+ ## Assignment 2：仿真啁啾脉冲在色散光纤内的传输
