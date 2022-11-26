@@ -24,7 +24,7 @@ theta = asin(sqrt(inside)) *180 / pi;
 
 % 如果是第一问，请把后面的代码注释掉
 d_theta = abs(theta-50.5480);
-linex = linspace(300,450,91);       % 画 y=0.8 的虚线
+linex = linspace(300,450,91);       % 画 y=8 的虚线
 liney = 8 * ones(size(linex));
 plot(lambda_p*1e3,d_theta,'k.-',linex,liney,'r--'),grid on;
 xlabel('\lambda / nm'),ylabel('\Delta\theta / °'),ylim([0,8.5]);
