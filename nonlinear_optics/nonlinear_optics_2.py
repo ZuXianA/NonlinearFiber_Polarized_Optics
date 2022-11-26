@@ -26,12 +26,12 @@ def main():
     # 计算匹配角
     inside = (ne_2w_2/no_w_2) * (no_2w_2-no_w_2) / (no_2w_2-ne_2w_2)
     theta = np.arcsin(np.sqrt(inside)) *180 / np.pi
-
+    
+    # 如果是第一问，请把后面的代码注释掉
     d_theta = np.abs(theta-50.5480)
     linex = np.linspace(300,450,101);       # 画 y=8 的虚线
     liney = 8 * np.ones(np.size(linex))
-
-    # 如果是第一问，请把后面的代码注释掉
+    
     plt.plot(lambda_p*1000,d_theta,'k-.'),plt.plot(linex,liney,'r--')
     plt.xlim([300,450]),plt.ylim([0,8.5]),plt.grid()
     plt.xlabel(r'$\lambda$ / nm'),plt.ylabel(r'$\Delta$$\theta$ / °')
