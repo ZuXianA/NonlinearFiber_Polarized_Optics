@@ -24,19 +24,22 @@ def Newton(wavelength):         # 构造 Newton 公式
 def dispersionD(wavelength):    # 色散参量 D 的波长表达式，图标题写清楚了具体形式
     d2n = sm.derivative(func=Sellmeier,x0=wavelength,dx=1e-6,n=2)
     D = -wavelength * d2n / c
-    return D
+    p = np.where(D>=0)[0][0]         # p返回的是零点所在位置
+    return D,p
 
-def DeltaTao(wavelength,DeltaLambda=100):       # 归一化时延差用色散参量表示，图标题写清楚了具体形式
-    return dispersionD(wavelength)*DeltaLambda
+def DeltaTao(wavelength,D,D0):       # 归一化时延差用色散参量表示，图标题写清楚了具体形式
+    DeltaLambda = wavelength - D0
+    deltaTao = D * DeltaLambda
+    return deltaTao
 
 def main():
-    x = np.linspace(start=1,stop=2,num=1000)    # 波长的范围 1~2 um
+    x = np.linspace(start=0.7,stop=2,num=1000)    # 波长的范围 1~2 um
     nnS = Sellmeier(wavelength=x)
     nnN = Newton(wavelength=x)
 
     line0 = np.zeros(len(x))                    # 画一条 D=0 的直线
-    D = dispersionD(wavelength=x)
-
+    D,p1 = dispersionD(wavelength=x)
+    
     '''下面是画图区域'''
     plt.subplot(221),plt.plot(x,nnS),plt.title('Sellmeier'),plt.grid()
     plt.xlabel(r'$\lambda$ / $\mu$m',loc='right'),plt.ylabel('index of refraction')
@@ -50,11 +53,10 @@ def main():
     plt.text(1,-1e-11,'Normal dispersion',fontsize=8)
     plt.text(1.6,9e-12,'Anomalous dispersion',fontsize=8)
 
-    plt.subplot(224),plt.plot(x,DeltaTao(wavelength=x))
+    plt.subplot(224),plt.plot(x,DeltaTao(wavelength=x,D=D,D0=x[p1]))
     plt.title(r'$\Delta\tau = D*\Delta\lambda$'),plt.grid()
     plt.xlabel(r'$\lambda$ / $\mu$m',loc='right'),plt.ylabel(r'Normalized delay difference $\Delta\tau$') 
     plt.show()
-   
 
 if __name__ == '__main__':
     main()
