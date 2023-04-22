@@ -43,7 +43,37 @@ KDP晶体色散公式在书本56页(3.2.2)，负单轴晶体第Ⅰ类相位匹�
 
 红色虚线表示的是0~8°区间，调谐范围就是两个交点处的横坐标
 
-## Polarized_Optics:张晓光老师的偏振光学 0412 作业
+## polarized_optics:张晓光老师的偏振光学 0412 作业
 选三个输入偏振态（斯托克斯空间）(1,0,0)、(0,1,0)、(0,0,1)，数值仿真波片角度不断变化时，输出偏振态的轨迹
-
 包含1个自由度，2个自由度，3个自由度，分别对应QWP/HWP，QWP+HWP，QWP+HWP+QWP
+
+提供 Matlab 和 Python 实现，两个版本的 demo
+在进行 2 和 3 自由度计算时，两种方法的实现略有不同，具体看代码，个人觉得 Matlab 代码实现更具物理意义
+
+在运行过程中，发现使用 Python 计算三个自由度的时候，速度非常慢，所以不太推荐
+
+下面介绍一下具体实现思路
+
+计算公式 $R_{WP,\theta}(\Delta)=R_{ROT}(\theta) R_{WP,0}(\Delta) R_{ROT}(-\theta)$
+
+对于QWP而言，$R_{WP,0}(\Delta)=R_{WP,0}(90\degree)$，同理，可得HWP，$R_{WP,0}(\Delta)=R_{WP,0}(180\degree)$
+
+$$
+R_{WP,0°}(\Delta)=
+\begin{bmatrix}
+  1& 0 & 0\\
+  0& cos\Delta& -sin\Delta\\
+  0& sin\Delta & cos\Delta
+\end{bmatrix}
+$$
+$$
+R_{ROT}(\theta)=
+\begin{bmatrix}
+  cos2\theta& -sin2\theta & 0\\
+  sin2\theta& cos2\theta & 0\\
+  0& 0 & 1
+\end{bmatrix}
+$$
+
+注意：该代码纯手工敲打，是按照自己的理解写出来的，可用作参考，但不保证绝对正确
+
