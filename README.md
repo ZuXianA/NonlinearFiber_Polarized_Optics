@@ -8,10 +8,10 @@
 使用 matplotlib 库画出原始 Sellmeier 公式对应的曲线，以及经由101组数据拟合后的曲线  
   
  latex 文件夹下包含 TEX 文档代码以及生成的 PDF 文件  
- python 文件夹下包含程序源代码以及 HTML 网页  
- 新添加了matlab版本的代码，数据来源于data.txt文件
+ Python 文件夹下包含程序源代码以及 HTML 网页  
+ Matlab 版本的代码已上传，数据来源于 latex 文件夹下的 data.txt 文件
    
- PS. 运行 python 程序需要 requests、numpy、scipy 和 matplotlib 第三方库
+ PS. 运行 Python 程序需要 requests、numpy、scipy 和 matplotlib 第三方库
  
  ## Assignment 2：仿真啁啾脉冲在色散光纤内的传输
  本次作业提供 Matlab 和 Python 实现，两个版本的 demo
